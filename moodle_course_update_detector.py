@@ -2,6 +2,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 import getpass
 import datetime
 now = datetime.datetime.now()
@@ -14,12 +15,15 @@ username = "cs160008j.iitju"
 # contents = f.read()
 # password = contents
 # f.close()
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')  # Last I checked this was necessary.
 
 # take password as input from terminal, it won't be visible
 password = getpass.getpass("Password:")
 
 # start a browser session
-browser = webdriver.Chrome("/users/sahilbansal/Downloads/chromedriver") # change the parameter with the path of chromedriver
+browser = webdriver.Chrome("/users/sahilbansal/Downloads/chromedriver", chrome_options=options) # change the parameter with the path of chromedriver
 
 # open link in browser
 browser.get('http://moodlej.iitjammu.ac.in/login/index.php')
